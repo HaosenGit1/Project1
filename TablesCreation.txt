@@ -1,0 +1,79 @@
+-- Create and use the database
+CREATE DATABASE IF NOT EXISTS Project1;
+USE Project1;
+
+-- Drop tables if they exist (respect foreign key order)
+DROP TABLE IF EXISTS QuizQuestion;
+DROP TABLE IF EXISTS Quiz;
+DROP TABLE IF EXISTS Choice;
+DROP TABLE IF EXISTS Question;
+DROP TABLE IF EXISTS Category;
+DROP TABLE IF EXISTS Contact;
+DROP TABLE IF EXISTS User;
+
+-- USER table
+CREATE TABLE User (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    firstname VARCHAR(255),
+    lastname VARCHAR(255),
+    is_active BOOLEAN DEFAULT TRUE,
+    is_admin BOOLEAN DEFAULT FALSE
+);
+
+-- CATEGORY table
+CREATE TABLE Category (
+    category_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL
+);
+
+-- QUESTION table
+CREATE TABLE Question (
+    question_id INT PRIMARY KEY AUTO_INCREMENT,
+    category_id INT NOT NULL,
+    description TEXT NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (category_id) REFERENCES Category(category_id)
+);
+
+-- CHOICE table
+CREATE TABLE Choice (
+    choice_id INT PRIMARY KEY AUTO_INCREMENT,
+    question_id INT NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    is_correct BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (question_id) REFERENCES Question(question_id)
+);
+
+-- QUIZ table
+CREATE TABLE Quiz (
+    quiz_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    category_id INT NOT NULL,
+    name VARCHAR(255),
+    time_start TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    time_end TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (category_id) REFERENCES Category(category_id)
+);
+
+-- QUIZ_QUESTION table
+CREATE TABLE QuizQuestion (
+    qq_id INT PRIMARY KEY AUTO_INCREMENT,
+    quiz_id INT NOT NULL,
+    question_id INT NOT NULL,
+    user_choice_id INT,
+    FOREIGN KEY (quiz_id) REFERENCES Quiz(quiz_id),
+    FOREIGN KEY (question_id) REFERENCES Question(question_id),
+    FOREIGN KEY (user_choice_id) REFERENCES Choice(choice_id)
+);
+
+-- CONTACT table
+CREATE TABLE Contact (
+    contact_id INT PRIMARY KEY AUTO_INCREMENT,
+    subject VARCHAR(255),
+    message TEXT,
+    email VARCHAR(255),
+    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

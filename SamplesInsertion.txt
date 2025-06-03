@@ -1,0 +1,263 @@
+-- Insert 10 Users
+INSERT INTO User (email, password, firstname, lastname, is_active, is_admin) VALUES
+('admin1@example.com', 'adminpass', 'Admin', 'One', TRUE, TRUE),
+('admin2@example.com', 'adminpass', 'Admin', 'Two', TRUE, TRUE),
+('user1@example.com', 'userpass', 'John', 'Doe', TRUE, FALSE),
+('user2@example.com', 'userpass', 'Alice', 'Smith', TRUE, FALSE),
+('user3@example.com', 'userpass', 'Bob', 'Brown', TRUE, FALSE),
+('user4@example.com', 'userpass', 'Carol', 'Johnson', TRUE, FALSE),
+('user5@example.com', 'userpass', 'David', 'Lee', TRUE, FALSE),
+('user6@example.com', 'userpass', 'Eve', 'Clark', TRUE, FALSE),
+('user7@example.com', 'userpass', 'Frank', 'Wright', TRUE, FALSE),
+('suspend1@example.com', 'suspendpass', 'Grace', 'Hall', FALSE, FALSE);
+
+-- Insert 10 Categories
+INSERT INTO Category (name) VALUES
+('Science'), ('History'), ('Technology'), ('Literature'), ('Math'),
+('Geography'), ('Sports'), ('Music'), ('Art'), ('Movies');
+
+-- Insert 10 Questions (1 per category)
+INSERT INTO Question (category_id, description, is_active) VALUES
+(1, 'What is the chemical symbol for water?', TRUE),
+(2, 'Who was the first President of the USA?', TRUE),
+(3, 'What does CPU stand for?', TRUE),
+(4, 'Who wrote "Romeo and Juliet"?', TRUE),
+(5, 'What is the value of pi (approx)?', TRUE),
+(6, 'What is the capital of France?', TRUE),
+(7, 'How many players on a soccer team?', TRUE),
+(8, 'Who is known as the King of Pop?', TRUE),
+(9, 'Which painter is famous for the Mona Lisa?', TRUE),
+(10, 'Who directed "Jurassic Park"?', TRUE);
+
+-- Insert 10 Choices (1 correct + 3 wrong per question)
+INSERT INTO Choice (question_id, description, is_correct) VALUES
+(1, 'H2O', TRUE), (1, 'CO2', FALSE), (1, 'O2', FALSE), (1, 'NaCl', FALSE),
+(2, 'George Washington', TRUE), (2, 'Abraham Lincoln', FALSE), (2, 'John Adams', FALSE), (2, 'Thomas Jefferson', FALSE),
+(3, 'Central Processing Unit', TRUE), (3, 'Control Panel Utility', FALSE), (3, 'Central Panel Unit', FALSE), (3, 'Computer Power Unit', FALSE),
+(4, 'William Shakespeare', TRUE), (4, 'Charles Dickens', FALSE), (4, 'Mark Twain', FALSE), (4, 'Jane Austen', FALSE),
+(5, '3.14', TRUE), (5, '2.71', FALSE), (5, '1.61', FALSE), (5, '4.20', FALSE),
+(6, 'Paris', TRUE), (6, 'London', FALSE), (6, 'Berlin', FALSE), (6, 'Madrid', FALSE),
+(7, '11', TRUE), (7, '9', FALSE), (7, '7', FALSE), (7, '5', FALSE),
+(8, 'Michael Jackson', TRUE), (8, 'Elvis Presley', FALSE), (8, 'Prince', FALSE), (8, 'Madonna', FALSE),
+(9, 'Leonardo da Vinci', TRUE), (9, 'Pablo Picasso', FALSE), (9, 'Vincent Van Gogh', FALSE), (9, 'Claude Monet', FALSE),
+(10, 'Steven Spielberg', TRUE), (10, 'George Lucas', FALSE), (10, 'James Cameron', FALSE), (10, 'Peter Jackson', FALSE);
+
+-- Insert 10 Quizzes (one per user, different categories)
+INSERT INTO Quiz (user_id, category_id, name, time_start, time_end) VALUES
+(3, 1, 'Science Quiz', NOW(), NOW()),
+(4, 2, 'History Quiz', NOW(), NOW()),
+(5, 3, 'Tech Quiz', NOW(), NOW()),
+(6, 4, 'Literature Quiz', NOW(), NOW()),
+(7, 5, 'Math Quiz', NOW(), NOW()),
+(8, 6, 'Geography Quiz', NOW(), NOW()),
+(9, 7, 'Sports Quiz', NOW(), NOW()),
+(10, 8, 'Music Quiz', NOW(), NOW()),
+(3, 9, 'Art Quiz', NOW(), NOW()),
+(4, 10, 'Movies Quiz', NOW(), NOW());
+
+-- Insert 10 QuizQuestions (each quiz linked to one question + choice)
+INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES
+(1, 1, 1), (2, 2, 5), (3, 3, 9), (4, 4, 13), (5, 5, 17),
+(6, 6, 21), (7, 7, 25), (8, 8, 29), (9, 9, 33), (10, 10, 37);
+
+-- Insert 10 Contact messages
+INSERT INTO Contact (subject, message, email, time) VALUES
+('Feedback', 'Great app!', 'user1@example.com', NOW()),
+('Bug Report', 'Found a bug.', 'user2@example.com', NOW()),
+('Account Issue', 'Cannot log in.', 'user3@example.com', NOW()),
+('Suggestion', 'Add more quizzes.', 'user4@example.com', NOW()),
+('Praise', 'Awesome UI!', 'user5@example.com', NOW()),
+('Complaint', 'Timer issue.', 'user6@example.com', NOW()),
+('Question', 'How to reset password?', 'user7@example.com', NOW()),
+('Support', 'Need help.', 'suspend1@example.com', NOW()),
+('General', 'Hi there.', 'admin1@example.com', NOW()),
+('Inquiry', 'Admin role request.', 'admin2@example.com', NOW());
+
+
+
+-- Science (category_id = 1)
+INSERT INTO Question (category_id, description, is_active) VALUES
+(1, 'What planet is known as the Red Planet?', TRUE),
+(1, 'What gas do plants absorb?', TRUE),
+(1, 'How many bones are in the human body?', TRUE),
+(1, 'What is the boiling point of water in Celsius?', TRUE);
+
+-- History (category_id = 2)
+INSERT INTO Question (category_id, description, is_active) VALUES
+(2, 'In what year did WWII end?', TRUE),
+(2, 'Who discovered America?', TRUE),
+(2, 'Where was Napoleon born?', TRUE),
+(2, 'What wall divided Berlin?', TRUE);
+
+-- Technology (category_id = 3)
+INSERT INTO Question (category_id, description, is_active) VALUES
+(3, 'What does RAM stand for?', TRUE),
+(3, 'Who founded Microsoft?', TRUE),
+(3, 'What language is used for Android apps?', TRUE),
+(3, 'What year was the iPhone released?', TRUE);
+
+-- Literature (category_id = 4)
+INSERT INTO Question (category_id, description, is_active) VALUES
+(4, 'Who wrote "1984"?', TRUE),
+(4, 'Who wrote "The Great Gatsby"?', TRUE),
+(4, 'Who wrote "Moby-Dick"?', TRUE),
+(4, 'Who wrote "Pride and Prejudice"?', TRUE);
+
+-- Math (category_id = 5)
+INSERT INTO Question (category_id, description, is_active) VALUES
+(5, 'What is 12 × 12?', TRUE),
+(5, 'What is the square root of 64?', TRUE),
+(5, 'What is the derivative of x^2?', TRUE),
+(5, 'What is 7 factorial?', TRUE);
+
+-- Geography (category_id = 6)
+INSERT INTO Question (category_id, description, is_active) VALUES
+(6, 'What is the largest ocean?', TRUE),
+(6, 'Which continent is Egypt in?', TRUE),
+(6, 'Which country has the most people?', TRUE),
+(6, 'Where is Mount Everest?', TRUE);
+
+-- Sports (category_id = 7)
+INSERT INTO Question (category_id, description, is_active) VALUES
+(7, 'How long is a marathon?', TRUE),
+(7, 'How many rings are on the Olympic flag?', TRUE),
+(7, 'Which sport uses a shuttlecock?', TRUE),
+(7, 'Which country invented tennis?', TRUE);
+
+-- Music (category_id = 8)
+INSERT INTO Question (category_id, description, is_active) VALUES
+(8, 'Who composed the Fifth Symphony?', TRUE),
+(8, 'What genre is Taylor Swift known for?', TRUE),
+(8, 'What is the smallest orchestral string instrument?', TRUE),
+(8, 'Who is the lead singer of U2?', TRUE);
+
+-- Art (category_id = 9)
+INSERT INTO Question (category_id, description, is_active) VALUES
+(9, 'What style is Picasso famous for?', TRUE),
+(9, 'What material is used in fresco painting?', TRUE),
+(9, 'What country is known for ukiyo-e art?', TRUE),
+(9, 'Who painted The Starry Night?', TRUE);
+
+-- Movies (category_id = 10)
+INSERT INTO Question (category_id, description, is_active) VALUES
+(10, 'What movie features the quote "I\'ll be back"?', TRUE),
+(10, 'Who played Jack in Titanic?', TRUE),
+(10, 'Which movie won Best Picture in 1994?', TRUE),
+(10, 'Who directed The Dark Knight?', TRUE);
+
+
+
+
+-- Science (questions 11–14)
+INSERT INTO Choice (question_id, description, is_correct) VALUES
+(11, 'Mars', TRUE), (11, 'Venus', FALSE), (11, 'Jupiter', FALSE), (11, 'Saturn', FALSE),
+(12, 'Carbon dioxide', TRUE), (12, 'Oxygen', FALSE), (12, 'Nitrogen', FALSE), (12, 'Hydrogen', FALSE),
+(13, '206', TRUE), (13, '205', FALSE), (13, '210', FALSE), (13, '215', FALSE),
+(14, '100°C', TRUE), (14, '90°C', FALSE), (14, '80°C', FALSE), (14, '120°C', FALSE);
+
+-- History (questions 15–18)
+INSERT INTO Choice (question_id, description, is_correct) VALUES
+(15, '1945', TRUE), (15, '1939', FALSE), (15, '1918', FALSE), (15, '1950', FALSE),
+(16, 'Christopher Columbus', TRUE), (16, 'Leif Erikson', FALSE), (16, 'Amerigo Vespucci', FALSE), (16, 'Ferdinand Magellan', FALSE),
+(17, 'Corsica', TRUE), (17, 'Paris', FALSE), (17, 'Lyon', FALSE), (17, 'Marseille', FALSE),
+(18, 'Berlin Wall', TRUE), (18, 'Great Wall of China', FALSE), (18, 'Hadrian\'s Wall', FALSE), (18, 'Wailing Wall', FALSE);
+
+-- Technology (questions 19–22)
+INSERT INTO Choice (question_id, description, is_correct) VALUES
+(19, 'Random Access Memory', TRUE), (19, 'Read After Memory', FALSE), (19, 'Rapid Access Machine', FALSE), (19, 'Run Access Mode', FALSE),
+(20, 'Bill Gates', TRUE), (20, 'Steve Jobs', FALSE), (20, 'Larry Page', FALSE), (20, 'Mark Zuckerberg', FALSE),
+(21, 'Java', TRUE), (21, 'Python', FALSE), (21, 'C#', FALSE), (21, 'Swift', FALSE),
+(22, '2007', TRUE), (22, '2005', FALSE), (22, '2009', FALSE), (22, '2011', FALSE);
+
+-- Literature (questions 23–26)
+INSERT INTO Choice (question_id, description, is_correct) VALUES
+(23, 'George Orwell', TRUE), (23, 'Aldous Huxley', FALSE), (23, 'Ray Bradbury', FALSE), (23, 'J.K. Rowling', FALSE),
+(24, 'F. Scott Fitzgerald', TRUE), (24, 'Ernest Hemingway', FALSE), (24, 'Mark Twain', FALSE), (24, 'John Steinbeck', FALSE),
+(25, 'Herman Melville', TRUE), (25, 'Nathaniel Hawthorne', FALSE), (25, 'Jules Verne', FALSE), (25, 'Edgar Allan Poe', FALSE),
+(26, 'Jane Austen', TRUE), (26, 'Charlotte Brontë', FALSE), (26, 'Emily Dickinson', FALSE), (26, 'Virginia Woolf', FALSE);
+
+-- Math (questions 27–30)
+INSERT INTO Choice (question_id, description, is_correct) VALUES
+(27, '144', TRUE), (27, '124', FALSE), (27, '132', FALSE), (27, '156', FALSE),
+(28, '8', TRUE), (28, '6', FALSE), (28, '7', FALSE), (28, '9', FALSE),
+(29, '2x', TRUE), (29, 'x', FALSE), (29, 'x^2', FALSE), (29, '2', FALSE),
+(30, '5040', TRUE), (30, '720', FALSE), (30, '120', FALSE), (30, '362880', FALSE);
+
+-- Geography (questions 31–34)
+INSERT INTO Choice (question_id, description, is_correct) VALUES
+(31, 'Pacific Ocean', TRUE), (31, 'Atlantic Ocean', FALSE), (31, 'Indian Ocean', FALSE), (31, 'Arctic Ocean', FALSE),
+(32, 'Africa', TRUE), (32, 'Asia', FALSE), (32, 'Europe', FALSE), (32, 'South America', FALSE),
+(33, 'China', TRUE), (33, 'India', FALSE), (33, 'USA', FALSE), (33, 'Indonesia', FALSE),
+(34, 'Nepal', TRUE), (34, 'Bhutan', FALSE), (34, 'Tibet', FALSE), (34, 'Pakistan', FALSE);
+
+-- Sports (questions 35–38)
+INSERT INTO Choice (question_id, description, is_correct) VALUES
+(35, '42.195 km', TRUE), (35, '40 km', FALSE), (35, '45 km', FALSE), (35, '50 km', FALSE),
+(36, '5', TRUE), (36, '4', FALSE), (36, '6', FALSE), (36, '7', FALSE),
+(37, 'Badminton', TRUE), (37, 'Tennis', FALSE), (37, 'Squash', FALSE), (37, 'Table Tennis', FALSE),
+(38, 'France', TRUE), (38, 'England', FALSE), (38, 'USA', FALSE), (38, 'Australia', FALSE);
+
+-- Music (questions 39–42)
+INSERT INTO Choice (question_id, description, is_correct) VALUES
+(39, 'Beethoven', TRUE), (39, 'Mozart', FALSE), (39, 'Bach', FALSE), (39, 'Chopin', FALSE),
+(40, 'Pop', TRUE), (40, 'Jazz', FALSE), (40, 'Classical', FALSE), (40, 'Rock', FALSE),
+(41, 'Violin', TRUE), (41, 'Cello', FALSE), (41, 'Viola', FALSE), (41, 'Bass', FALSE),
+(42, 'Bono', TRUE), (42, 'Sting', FALSE), (42, 'Mick Jagger', FALSE), (42, 'Freddie Mercury', FALSE);
+
+-- Art (questions 43–46)
+INSERT INTO Choice (question_id, description, is_correct) VALUES
+(43, 'Cubism', TRUE), (43, 'Impressionism', FALSE), (43, 'Realism', FALSE), (43, 'Baroque', FALSE),
+(44, 'Plaster', TRUE), (44, 'Wood', FALSE), (44, 'Metal', FALSE), (44, 'Paper', FALSE),
+(45, 'Japan', TRUE), (45, 'China', FALSE), (45, 'Korea', FALSE), (45, 'Thailand', FALSE),
+(46, 'Vincent Van Gogh', TRUE), (46, 'Monet', FALSE), (46, 'Renoir', FALSE), (46, 'Cézanne', FALSE);
+
+-- Movies (questions 47–50)
+INSERT INTO Choice (question_id, description, is_correct) VALUES
+(47, 'The Terminator', TRUE), (47, 'Predator', FALSE), (47, 'RoboCop', FALSE), (47, 'Die Hard', FALSE),
+(48, 'Leonardo DiCaprio', TRUE), (48, 'Brad Pitt', FALSE), (48, 'Tom Cruise', FALSE), (48, 'Johnny Depp', FALSE),
+(49, 'Forrest Gump', TRUE), (49, 'Pulp Fiction', FALSE), (49, 'Shawshank Redemption', FALSE), (49, 'Four Weddings and a Funeral', FALSE),
+(50, 'Christopher Nolan', TRUE), (50, 'Quentin Tarantino', FALSE), (50, 'Martin Scorsese', FALSE), (50, 'Ridley Scott', FALSE);
+
+
+
+
+
+-- Quiz 1 (Science Quiz) → questions 11–14
+INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES
+(1, 11, NULL), (1, 12, NULL), (1, 13, NULL), (1, 14, NULL);
+
+-- Quiz 2 (History Quiz) → questions 15–18
+INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES
+(2, 15, NULL), (2, 16, NULL), (2, 17, NULL), (2, 18, NULL);
+
+-- Quiz 3 (Tech Quiz) → questions 19–22
+INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES
+(3, 19, NULL), (3, 20, NULL), (3, 21, NULL), (3, 22, NULL);
+
+-- Quiz 4 (Literature Quiz) → questions 23–26
+INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES
+(4, 23, NULL), (4, 24, NULL), (4, 25, NULL), (4, 26, NULL);
+
+-- Quiz 5 (Math Quiz) → questions 27–30
+INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES
+(5, 27, NULL), (5, 28, NULL), (5, 29, NULL), (5, 30, NULL);
+
+-- Quiz 6 (Geography Quiz) → questions 31–34
+INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES
+(6, 31, NULL), (6, 32, NULL), (6, 33, NULL), (6, 34, NULL);
+
+-- Quiz 7 (Sports Quiz) → questions 35–38
+INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES
+(7, 35, NULL), (7, 36, NULL), (7, 37, NULL), (7, 38, NULL);
+
+-- Quiz 8 (Music Quiz) → questions 39–42
+INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES
+(8, 39, NULL), (8, 40, NULL), (8, 41, NULL), (8, 42, NULL);
+
+-- Quiz 9 (Art Quiz) → questions 43–46
+INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES
+(9, 43, NULL), (9, 44, NULL), (9, 45, NULL), (9, 46, NULL);
+
+-- Quiz 10 (Movies Quiz) → questions 47–50
+INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES
+(10, 47, NULL), (10, 48, NULL), (10, 49, NULL), (10, 50, NULL);
